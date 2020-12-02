@@ -13,16 +13,9 @@ function getNewTask(e) {
     loadSpreadsheetData(week.getAttribute("id"));
 }
 
-function hideTasks(tasks) {
-    for (var i = 0; i < tasks.length; i++) {    
-        var task = tasks[i];
-        task.classList.add("hidden");
-    }
-}
-
 function loadSpreadsheetData(week) {
-    const sheetId = "1vG0wHGgMki7hwar8Neqp72zzfHzxtKaYHACUmFKV1oM";
-    const apiKey = "AIzaSyCxATaesPxkJ2_y7xSRgu3NORCRhgnNLnc";
+    const sheetId = env("GOOGLE_SHEET_ID"); 
+    const apiKey = env("GOOGLE_API_KEY");
     const url = `https://www.googleapis.com/drive/v3/files/${sheetId}/export?mimeType=text/csv&fields=*&key=${apiKey}`;
     const xhr = new XMLHttpRequest();
     xhr.open("GET", url);
